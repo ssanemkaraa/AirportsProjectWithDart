@@ -1,9 +1,7 @@
 import 'dart:async';
 
 import 'package:airports/models/airportbyfreetextmodel.dart';
-import 'package:airports/customwidgets/detailpage.dart';
-import 'package:airports/pages/list_page.dart';
-import 'package:airports/services/airportservice.dart';
+import 'package:airports/pages/detailpage.dart';
 import 'package:flutter/material.dart';
 import 'package:airports/utils/MapUtils.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';

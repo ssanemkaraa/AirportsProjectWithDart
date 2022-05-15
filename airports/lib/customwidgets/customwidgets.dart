@@ -1,8 +1,6 @@
 import 'package:airports/constants/constants.dart';
-import 'package:airports/models/airportbyicao.dart';
 import 'package:airports/theme/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class CustomWidget {
   static Widget sizedBoxSmall(BuildContext context) {
@@ -21,15 +19,15 @@ class CustomWidget {
   }
 
   static Widget staticSizedBoxSmall(BuildContext context) {
-    return SizedBox(height: 8.0);
+    return const SizedBox(height: 8.0);
   }
 
   static Widget staticSizedBoxNormal(BuildContext context) {
-    return SizedBox(height: 20.0);
+    return const SizedBox(height: 20.0);
   }
 
   static Widget staticSizedBoxBig(BuildContext context) {
-    return SizedBox(height: 50.0);
+    return const SizedBox(height: 50.0);
   }
 }
 
@@ -60,7 +58,7 @@ class CustomTextField {
       controller: inpucontroller,
       decoration: InputDecoration(
         border: const OutlineInputBorder(),
-        labelText: labelname != null ? labelname : " ",
+        labelText: labelname,
       ),
     );
   }
@@ -74,7 +72,7 @@ class TitleText {
     return Text(
       title,
       style: const TextStyle(
-          color: ColorPaletteSoftGreen.d_viridian,
+          color: ColorPaletteSoftGreen.dViridian,
           fontSize: TextSizeConstants.big,
           fontWeight: FontWeight.bold),
     );
@@ -87,7 +85,7 @@ class Buton {
     return MaterialButton(
       height: MediaQueryConstants.height05(context),
       minWidth: MediaQueryConstants.height30(context),
-      color: ColorPaletteSoftGreen.d_viridian,
+      color: ColorPaletteSoftGreen.dViridian,
       child: ButonText.butonText(context, title: title),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
       onPressed: onTap,

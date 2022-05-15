@@ -4,14 +4,14 @@
 
 import 'dart:convert';
 
-airportByIcaoModel airportByIcaoModelFromJson(String str) =>
-    airportByIcaoModel.fromJson(json.decode(str));
+AirportByIcaoModel airportByIcaoModelFromJson(String str) =>
+    AirportByIcaoModel.fromJson(json.decode(str));
 
-String airportByIcaoModelToJson(airportByIcaoModel data) =>
+String airportByIcaoModelToJson(AirportByIcaoModel data) =>
     json.encode(data.toJson());
 
-class airportByIcaoModel {
-  airportByIcaoModel({
+class AirportByIcaoModel {
+  AirportByIcaoModel({
     required this.icao,
     required this.iata,
     this.shortName,
@@ -39,8 +39,8 @@ class airportByIcaoModel {
   Runway? runways;
   CurrentTime? currentTime;
 
-  factory airportByIcaoModel.fromJson(Map<String, dynamic> json) =>
-      airportByIcaoModel(
+  factory AirportByIcaoModel.fromJson(Map<String, dynamic> json) =>
+      AirportByIcaoModel(
         icao: json["icao"],
         iata: json["iata"],
         shortName: json["shortName"],

@@ -1,4 +1,3 @@
-import 'package:airports/customwidgets/detailpage.dart';
 import 'package:airports/models/airportbyfreetextmodel.dart';
 import 'package:airports/pages/list_page.dart';
 import 'package:airports/pages/map_page.dart';
@@ -14,8 +13,6 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 
   void _onItemTapped(int index) {
     setState(() {

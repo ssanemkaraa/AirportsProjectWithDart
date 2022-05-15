@@ -1,15 +1,14 @@
-import 'package:airports/constants/constants.dart';
 import 'package:airports/theme/colors.dart';
 import 'package:airports/theme/generatematerialcolor.dart';
 import 'package:flutter/material.dart';
 
 ThemeData projectThemeData() {
   return ThemeData(
-    primarySwatch: generateMaterialColor(ColorPaletteSoftGreen.a_tumbleweed),
-    primaryColor: ColorPaletteSoftGreen.c_darkseegreen,
-    primaryColorDark: ColorPaletteSoftGreen.e_darkspringgreen,
-    primaryColorLight: ColorPaletteSoftGreen.b_ashgrey,
+    primarySwatch: generateMaterialColor(ColorPaletteSoftGreen.aTumbleweed),
+    primaryColor: ColorPaletteSoftGreen.cDarkseegreen,
+    primaryColorDark: ColorPaletteSoftGreen.eDarkspringgreen,
+    primaryColorLight: ColorPaletteSoftGreen.bAshgrey,
     appBarTheme:
-        const AppBarTheme(backgroundColor: ColorPaletteSoftGreen.a_tumbleweed),
+        const AppBarTheme(backgroundColor: ColorPaletteSoftGreen.aTumbleweed),
   );
 }

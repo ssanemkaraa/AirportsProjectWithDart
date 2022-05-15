@@ -4,7 +4,7 @@ class Alert {
   static showAlertDialog(BuildContext context) {
     // Create button
     Widget okButton = TextButton(
-      child: Text("OK"),
+      child: const Text("OK"),
       onPressed: () {
         Navigator.of(context).pop();
       },
@@ -12,8 +12,9 @@ class Alert {
 
     // Create AlertDialog
     AlertDialog alert = AlertDialog(
-      title: Text("Hatalı Giriş Yaptınız"),
-      content: Text("Kullanıcı Adı : test , Şifre : 1 olarak giriş yapınız."),
+      title: const Text("Hatalı Giriş Yaptınız"),
+      content:
+          const Text("Kullanıcı Adı : test , Şifre : 1 olarak giriş yapınız."),
       actions: [
         okButton,
       ],

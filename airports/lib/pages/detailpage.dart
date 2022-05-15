@@ -12,7 +12,7 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
-  late airportByIcaoModel? icaoModel;
+  late AirportByIcaoModel? icaoModel;
 
   @override
   void initState() {
@@ -24,13 +24,13 @@ class _DetailPageState extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text("Detay Sayfası")),
+        appBar: AppBar(title: const Text("Detay Sayfası")),
         body: (icaoModel != null
             ? _createBody(icaoModel!)
-            : Text("apiden yanıt bekleniyor")));
+            : const Text("apiden yanıt bekleniyor")));
   }
 
-  Widget _createBody(airportByIcaoModel icaoModel) {
+  Widget _createBody(AirportByIcaoModel icaoModel) {
     return Column(
       children: [
         Text(icaoModel.iata),
@@ -38,8 +38,8 @@ class _DetailPageState extends State<DetailPage> {
         Text(icaoModel.fullName ?? ""),
         Text(icaoModel.municipalityName ?? ""),
         ...icaoModel.urls!.entries
-            .map((site) =>
-                InkWell(child: Text(site.key), onTap: () => launch(site.value)))
+            .map((site) => InkWell(
+                child: Text(site.key), onTap: () => launchUrl(site.value)))
             .toList()
       ],
     );
@@ -48,8 +48,8 @@ class _DetailPageState extends State<DetailPage> {
   Widget getUrlWidget(Map<String, dynamic>? urlJson) {
     return Column(
         children: urlJson!.entries
-            .map((site) =>
-                InkWell(child: Text(site.key), onTap: () => launch(site.value)))
+            .map((site) => InkWell(
+                child: Text(site.key), onTap: () => launchUrl(site.value)))
             .toList());
   }
 

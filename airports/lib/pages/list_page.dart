@@ -1,11 +1,10 @@
-import 'package:airports/customwidgets/detailpage.dart';
+import 'package:airports/pages/detailpage.dart';
 import 'package:airports/models/airportbyfreetextmodel.dart';
-import 'package:airports/services/airportservice.dart';
 import 'package:flutter/material.dart';
 
 class ListPage extends StatefulWidget {
-  late List<AirportByFreeTextModel> gelenAirportList = [];
-  ListPage({Key? key, required this.gelenAirportList}) : super(key: key);
+  final List<AirportByFreeTextModel> gelenAirportList;
+  const ListPage({Key? key, required this.gelenAirportList}) : super(key: key);
 
   @override
   State<ListPage> createState() => _ListPageState();
@@ -24,7 +23,7 @@ class _ListPageState extends State<ListPage> {
             var airport = widget.gelenAirportList[index];
 
             return ListTile(
-                leading: Icon(Icons.list),
+                leading: const Icon(Icons.list),
                 trailing: TextButton(
                     onPressed: () {
                       Navigator.push(
@@ -33,7 +32,7 @@ class _ListPageState extends State<ListPage> {
                               builder: (context) =>
                                   DetailPage(kod: airport.icao)));
                     },
-                    child: Text(
+                    child: const Text(
                       "Detay Sayfası",
                       style: TextStyle(color: Colors.green, fontSize: 15),
                     )),

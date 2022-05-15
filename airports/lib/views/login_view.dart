@@ -2,7 +2,6 @@ import 'package:airports/constants/constants.dart';
 import 'package:airports/customwidgets/alertdialog.dart';
 import 'package:airports/customwidgets/customwidgets.dart';
 import 'package:airports/services/loginservice.dart';
-import 'package:airports/theme/colors.dart';
 import 'package:airports/views/home_view.dart';
 import 'package:flutter/material.dart';
 
@@ -68,7 +67,7 @@ class _LoginViewState extends State<LoginView> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => HomeView()));
+                                builder: (context) => const HomeView()));
                       } else {
                         Alert.showAlertDialog(context);
                       }
