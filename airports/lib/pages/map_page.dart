@@ -29,6 +29,7 @@ class MapPageState extends State<MapPage> {
 
   @override
   void initState() {
+    airportMarkers.clear();
     setMarkers();
     super.initState();
   }
@@ -114,7 +115,7 @@ class MapPageState extends State<MapPage> {
 
   void setMarkers() async {
     List<LatLng> coordinates = [];
-    airportMarkers.clear();
+
     for (var airport in widget.gelenAirportList) {
       coordinates.add(LatLng(airport.location.lat, airport.location.lon));
 
@@ -134,9 +135,11 @@ class MapPageState extends State<MapPage> {
       ));
     }
 
-    final GoogleMapController controller = await _controller.future;
-    controller.animateCamera(CameraUpdate.newLatLngBounds(
-        MapUtils.boundsFromLatLngList(coordinates), 150));
+    if (coordinates.isNotEmpty) {
+      final GoogleMapController controller = await _controller.future;
+      controller.animateCamera(CameraUpdate.newLatLngBounds(
+          MapUtils.boundsFromLatLngList(coordinates), 150));
+    }
 
     setState(() {});
   }

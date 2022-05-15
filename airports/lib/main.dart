@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: ProjectConstants.maintitle,
       theme: projectThemeData(),
-      home: HomeView(),
+      home: LoginView(),
     );
   }
 }
