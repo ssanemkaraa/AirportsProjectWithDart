@@ -1,5 +1,8 @@
 import 'package:airports/constants/constants.dart';
+import 'package:airports/pages/list_page.dart';
+import 'package:airports/pages/map_page.dart';
 import 'package:airports/theme/theme.dart';
+import 'package:airports/views/home_view.dart';
 import 'package:airports/views/login_view.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +20,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: ProjectConstants.maintitle,
       theme: projectThemeData(),
-      home: LoginView(),
+      home: HomeView(),
     );
   }
 }

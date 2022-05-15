@@ -1,6 +1,8 @@
 import 'package:airports/constants/constants.dart';
+import 'package:airports/models/airportbyicao.dart';
 import 'package:airports/theme/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CustomWidget {
   static Widget sizedBoxSmall(BuildContext context) {

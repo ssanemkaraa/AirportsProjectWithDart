@@ -1,5 +1,8 @@
-import 'package:airports/constants/constants.dart';
-import 'package:airports/theme/colors.dart';
+import 'package:airports/customwidgets/detailpage.dart';
+import 'package:airports/models/airportbyfreetextmodel.dart';
+import 'package:airports/pages/list_page.dart';
+import 'package:airports/pages/map_page.dart';
+import 'package:airports/services/airportservice.dart';
 import 'package:flutter/material.dart';
 
 class HomeView extends StatefulWidget {
@@ -10,114 +13,83 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  int _selectedIndex = 0;
+  static const TextStyle optionStyle =
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  final TextEditingController searchController = TextEditingController();
+  List<AirportByFreeTextModel> airportList = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text("Detay sayfası, girişte ilk açılacak ekran")),
-      body: ListView.builder(
-          itemCount: 5,
-          itemBuilder: (BuildContext context, int index) {
-            return Card(
-              color: Colors.cyan,
-              // clipBehavior: Clip.antiAlias,
-              child: Column(
-                children: [
-                  ListTile(
-                    leading: Container(
-                        height: 500,
-                        color: Colors.amber,
-                        child: Icon(Icons.arrow_drop_down_circle)),
-                    title: Container(
-                        color: Colors.blue,
-                        child: const Text('Havaalanı adı yazılacak')),
-                    subtitle: Row(
-                      children: [
-                        birKolon(),
-                        SizedBox(width: 10.0),
-                        birKolon(),
-                        SizedBox(width: 10.0),
-                        birKolon(),
-                        SizedBox(width: 10.0),
-                        birKolon(),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 10.0),
-                  Container(
-                    color: Colors.pink,
-                    child: Text(
-                      'Tam ortada bir şeyler yazıyor',
-                      style: TextStyle(color: Colors.black.withOpacity(0.6)),
-                    ),
-                  ),
-                  ButtonBar(
-                    alignment: MainAxisAlignment.end,
-                    children: [
-                      TextButton(
-                        style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.all<Color>(Colors.green)),
-                        onPressed: () {
-                          // Perform some action
-                        },
-                        child: const Text('Haritaya Git Butonu'),
-                      ),
-                    ],
-                  ),
-                  // Image.network(
-                  //     'https://cdn.pixabay.com/photo/2016/11/08/05/01/airplane-1807486_960_720.jpg'),
-                ],
-              ),
-            );
-          }),
-    );
-  }
-}
-
-class birKolon extends StatelessWidget {
-  const birKolon({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Divider(),
-        detayBilgiler(),
-        Divider(),
-        detayBilgiler(),
-        Divider(),
-        detayBilgiler(),
-      ],
-    );
-  }
-}
-
-class detayBilgiler extends StatelessWidget {
-  const detayBilgiler({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Colors.purple,
-      child: Text(
-        'Hava Alanı Açıklaması yazılacak',
-        style: TextStyle(color: Colors.black.withOpacity(0.6)),
+        title: Container(
+          decoration: BoxDecoration(
+            color: Colors.amber.shade300,
+            borderRadius: BorderRadius.circular(15),
+          ),
+          child: TextField(
+            controller: searchController,
+            decoration: const InputDecoration(
+              border: InputBorder.none,
+              errorBorder: InputBorder.none,
+              enabledBorder: InputBorder.none,
+              focusedBorder: InputBorder.none,
+              contentPadding: EdgeInsets.all(15),
+              hintText: 'Search',
+            ),
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () async {
+              String text = searchController.text;
+              if (text.length > 2) {
+                List<AirportByFreeTextModel> searchResponse =
+                    await AirportService.getAirportByFreeText(text: text);
+                airportList = searchResponse;
+                setState(() {});
+              }
+            },
+            child: Icon(
+              Icons.search,
+              color: Colors.amber.shade100,
+            ),
+          )
+        ],
+      ),
+      body: Center(
+        child: getSelectedPage(),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.map),
+            label: 'Harita',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.details),
+            label: 'Liste',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
       ),
     );
   }
+
+  Widget getSelectedPage() {
+    if (_selectedIndex == 0) {
+      return MapPage(gelenAirportList: airportList);
+    } else {
+      return ListPage(gelenAirportList: airportList);
+    }
+  }
 }
-
-
-// ListTile(
-//                 leading: Icon(Icons.list),
-                
-//                 trailing: const Text(
-//                   "GFG",
-//                   style: TextStyle(color: Colors.green, fontSize: 15),
-//                 ),
-//                 title: Text("List item $index"));
